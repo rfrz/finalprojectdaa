@@ -1,95 +1,80 @@
-🧩 **8-Puzzle Solver: BFS vs DFS Comparison**
+# 🧩 8-Puzzle Solver: BFS vs DFS Comparison
 
-**Final Project Desain & Analisis Algoritma (DAA)**
-Aplikasi GUI berbasis Python untuk memvisualisasikan dan membandingkan performa algoritma Breadth-First Search (BFS) dan Depth-First Search (DFS) dalam menyelesaikan permainan 8-Puzzle.
+> **Final Project Desain & Analisis Algoritma (DAA)**
 
-📖 **Deskripsi Proyek**
+Aplikasi GUI berbasis Python ini dirancang untuk memvisualisasikan dan membandingkan performa dua algoritma pencarian klasik, **Breadth-First Search (BFS)** dan **Depth-First Search (DFS)**, dalam menyelesaikan permainan 8-Puzzle.
 
-Proyek ini bertujuan untuk mendemonstrasikan bagaimana dua algoritma pencarian klasik bekerja dalam menyelesaikan masalah 8-Puzzle. Aplikasi ini dibangun menggunakan Python dengan antarmuka Tkinter.
+## 📖 Deskripsi Proyek
 
-Pengguna dapat menentukan jumlah pengujian (trials), dan aplikasi akan menjalankan simulasi untuk melihat algoritma mana yang lebih efisien dalam hal:
+Proyek ini mendemonstrasikan bagaimana algoritma pencarian bekerja menyelesaikan masalah puzzle angka. Dibangun dengan antarmuka **Tkinter**, aplikasi ini memungkinkan pengguna untuk:
 
-- Langkah (Cost): Berapa banyak pergeseran ubin yang dibutuhkan.
-- Simpul (Nodes): Berapa banyak kemungkinan keadaan (state) yang diperiksa komputer.
-- Waktu: Seberapa cepat komputer menemukan solusi.
+1.  Menentukan jumlah pengujian (*trials*).
+2.  Menjalankan simulasi otomatis pada puzzle acak yang sama.
+3.  Membandingkan efisiensi algoritma berdasarkan:
+    * **Langkah (Cost):** Jumlah pergeseran ubin.
+    * **Simpul (Nodes):** Jumlah state yang diperiksa.
+    * **Waktu:** Kecepatan menemukan solusi.
 
-**✨ Fitur Utama**
+## ✨ Fitur Utama
 
-- Antarmuka Grafis (GUI): Mudah digunakan, visualisasi papan puzzle 3x3.
-- Perbandingan Head-to-Head: Menjalankan BFS dan DFS pada puzzle acak yang sama persis.
-- Jaminan Solusi: Puzzle yang dibangkitkan dijamin solvable (dapat diselesaikan).
-- Log & Statistik: Menampilkan log detail setiap pengujian dan ringkasan rata-rata kinerja di akhir proses.
+* **Antarmuka Grafis (GUI):** Visualisasi papan puzzle 3x3 yang interaktif dan mudah dipahami.
+* **Perbandingan *Head-to-Head*:** BFS dan DFS diuji pada konfigurasi puzzle acak yang **sama persis** untuk keadilan data.
+* **Jaminan Solusi (*Solvable*):** Algoritma pembangkit puzzle menjamin setiap puzzle yang dibuat pasti bisa diselesaikan.
+* **Log & Statistik:** Menampilkan log detail per pengujian dan ringkasan rata-rata kinerja di akhir proses.
 
-**🛠️ Prasyarat (Requirements)**
+## 🛠️ Prasyarat (Requirements)
 
-Aplikasi ini dibuat menggunakan Python 3.10. Pastikan Python sudah terinstal di komputer Anda.
+Kode ini dikembangkan menggunakan **Python 3.10**.
 
-Library yang digunakan adalah library bawaan Python (Standard Library), jadi tidak perlu melakukan pip install tambahan:
+Library yang digunakan adalah modul bawaan Python (*Standard Library*), sehingga **tidak perlu instalasi `pip` tambahan**:
+* `tkinter` (GUI)
+* `collections` (Struktur data Deque)
+* `random`, `time` (Utilitas)
 
-- tkinter (untuk GUI)
-- collections (untuk struktur data Queue/Deque)
-- random & time (untuk utilitas)
+> **Catatan untuk pengguna Linux:** Jika mengalami error `ModuleNotFoundError: No module named '_tkinter'`, silakan install paket `python3-tk` melalui terminal.
 
-Catatan untuk pengguna Linux: Jika terjadi error ModuleNotFoundError: No module named '_tkinter', silakan install paket python3-tk.
+## 🚀 Cara Menjalankan
 
-**🚀 Cara Menjalankan**
+1.  **Clone Repository** (atau download zip):
+    ```bash
+    git clone [https://github.com/username-anda/nama-repo-anda.git](https://github.com/username-anda/nama-repo-anda.git)
+    cd nama-repo-anda
+    ```
 
-Clone repositori ini (atau download file zip-nya):
+2.  **Jalankan Aplikasi:**
+    Buka terminal di dalam folder proyek dan ketik:
+    ```bash
+    python gui.py
+    ```
 
-git clone [https://github.com/username-anda/nama-repo-anda.git](https://github.com/username-anda/nama-repo-anda.git)
-cd nama-repo-anda
+3.  **Penggunaan:**
+    * Masukkan jumlah pengujian pada kolom input (Default: 10).
+    * Klik tombol **"Jalankan Perbandingan"**.
+    * Tunggu proses selesai dan analisis hasilnya di kolom Log.
 
+## 🧠 Penjelasan Algoritma
 
-Jalankan aplikasi:
-Buka terminal/command prompt di dalam folder proyek, lalu ketik:
+### 1. Breadth-First Search (BFS)
+* **Konsep:** Mencari solusi secara melebar (*layer per layer*). Mengecek semua kemungkinan 1 langkah, lalu 2 langkah, dst.
+* **Kelebihan:** Dijamin menemukan solusi **terpendek** (optimal).
+* **Kekurangan:** Boros memori karena menyimpan banyak state antrian.
+* **Struktur Data:** Queue (Antrian) - *First In, First Out (FIFO)*.
 
-python gui.py
+### 2. Depth-First Search (DFS)
+* **Konsep:** Mencari solusi secara mendalam. Mencoba satu jalur terus menerus hingga mentok atau ketemu solusi, baru mundur (*backtrack*).
+* **Kelebihan:** Implementasi sederhana dan hemat memori pada kasus tertentu.
+* **Kekurangan:** **Tidak menjamin** solusi terpendek. Jalur solusi bisa sangat panjang dan berputar-putar.
+* **Struktur Data:** Stack (Tumpukan) - *Last In, First Out (LIFO)*.
 
+## 📂 Struktur File
 
-Penggunaan Aplikasi:
+| Nama File | Deskripsi |
+| :--- | :--- |
+| `gui.py` | **Main Program.** Menjalankan GUI Tkinter, visualisasi grid, dan mengatur loop pengujian. |
+| `puzzle_solver.py` | **Logic Core.** Berisi implementasi fungsi `bfs()`, `dfs()`, `get_neighbors()`, dan class `Node`. |
 
-- Masukkan jumlah pengujian yang diinginkan pada kolom input (Default: 10).
-
-- Klik tombol "Jalankan Perbandingan".
-
-- Tunggu hingga proses selesai dan lihat hasilnya di kolom Log dan Ringkasan.
-
-**🧠 Penjelasan Algoritma**
-
-1. Breadth-First Search (BFS)
-
-- Konsep: Mencari solusi melebar (layer per layer). Ia mengecek semua kemungkinan langkah 1, lalu semua kemungkinan langkah 2, dst.
-
-- Kelebihan: Dijamin menemukan solusi terpendek (langkah paling sedikit).
-
-- Kekurangan: Membutuhkan memori yang besar karena harus menyimpan banyak kemungkinan state di setiap level.
-
-- Struktur Data: Menggunakan Queue (Antrian) - First In, First Out (FIFO).
-
-2. Depth-First Search (DFS)
-
-- Konsep: Mencari solusi mendalam. Ia akan mencoba satu jalur terus menerus sampai mentok atau ketemu solusi, baru mundur (backtrack) jika jalan buntu.
-
-- Kelebihan: Implementasi sederhana, seringkali lebih hemat memori dibanding BFS pada kasus tertentu.
-
-- Kekurangan: Tidak menjamin solusi terpendek. Hasil langkahnya bisa sangat panjang dan "berputar-putar".
-
-- Struktur Data: Menggunakan Stack (Tumpukan) - Last In, First Out (LIFO).
-
-**📂 Struktur File**
-
-gui.py: File utama untuk menjalankan aplikasi. Berisi kode untuk antarmuka pengguna (Tkinter), visualisasi grid, dan logika pengulangan tes.
-
-puzzle_solver.py: "Otak" dari aplikasi. Berisi:
-
-Class Node: Representasi status papan. Dengan isi:
-
-- Fungsi bfs() dan dfs(): Logika pencarian solusi.
-
-- Fungsi get_neighbors(): Menentukan langkah yang valid (Atas, Bawah, Kiri, Kanan).
+---
 
 **👨‍💻 Author**
-
-Dibuat oleh rfrz
-
-Dibuat untuk memenuhi Tugas Akhir Mata Kuliah Desain & Analisis Algoritma.
+* **Dibuat oleh:** rfrz
+* *Tugas Akhir Mata Kuliah Desain & Analisis Algoritma.*
